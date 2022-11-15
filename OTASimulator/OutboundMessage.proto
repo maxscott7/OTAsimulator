@@ -1,0 +1,185 @@
+
+// [START declaration]
+syntax = "proto3";
+package OTAMessages;
+
+// The time slot header
+message OutTimeSlotHeader {
+	enum MessageCountNos {
+		MsgCOUNT0 = 0;
+		MsgCOUNT1 = 1;
+		MsgCOUNT2 = 2;
+		MsgCOUNT3 = 3;
+		MsgCOUNT4 = 4;
+		MsgCOUNT5 = 5;
+		MsgCOUNT6 = 6;
+	}
+	
+	MessageCountNos MessageCount = 1;
+	bool Outage = 2;
+}
+
+// The individual message header
+
+message OutMessageHeader {
+	enum OutboundMessageTypeNos{
+		OUT_UNUSED = 0; 				//Un-used
+		DCC_ACK = 1;  					//Ack a VLU transmission 
+		// call messages
+		INDIVIDUAL_VEHICLE_MSG = 2;  	//Send an individual vehicle data msg   
+		GROUP_VEHICLE_MSG = 3;  		//Send a group vehicle data msg    
+		INDIVIDUAL_VOICE_CALL = 4;  	//Send an individual vehicle voice call 
+		INDIVIDUAL_PA_CALL = 5;  		//Send an individual vehicle PA call    
+		GROUP_VOICE_CALL = 6;  			//Send a group vehicle voice call  
+		GROUP_PA_CALL = 7;  			//Send a group vehicle PA call     
+		COVERT_MIC_CALL = 8;  			//Send a covert microphone call    
+		INDIVIDUAL_LISTEN_CALL = 9;  	//Send an individual vehicle listen calls 
+		GROUP_LISTEN_CALL = 10; 		//Send a group listen call         
+		PERMANENT_VOICE_CALL = 11; 		//Place Vehicle into Permanent voice 
+		DEFINE_CALL_LIST = 12; 			//Send a list of IDs associated with a CAD group 
+		GROUP_PV_CALL = 13; 			//Group Permanent Voice Call 
+		// vehicle/driver status 
+		REMOTE_LOGON = 14; 				//vlu Automatic logon 
+		LOGON_ACK = 15; 				//Driver logon ack from CAD 
+		REMOTE_LOGOFF = 16; 			//VLU Automatic logoff 
+		LOGOFF_ACK = 17; 				//Driver logoff ack from CAD 
+		VEHICLE_ALIVE_ACK = 18; 		//Vehicle alive ack from CAD 
+		SET_SYSTEM_PARAMETERS = 19; 	//Change system polling mode 
+		MOBILE_TX_DISABLE = 20; 		//Disable all transmission from this vehicle 
+		DATA_CHANNEL_OK = 21; 			//System Data channel status 
+		RELIEF_LOGON_ACK = 22; 			//Relief logon ack 
+		SCH_VALID_REQ = 23; 			//Schedule validation message 
+		PV_END = 24; 					//End PV state on vehicle 
+		PARKING_CONFIRMATION = 25; 		//Parking confirmation message  
+		STATUS_ACK = 26; 				//Status ack message     
+		SPARE_STATUS_6 = 27; 			//Place holder for future msgs 
+		// GPS 
+		LOCATION_REQUEST = 28; 			//Location request for a vehicle 
+		DGPS_CORRECTION = 29; 			//Differential GPS correction data 
+		SPARE_GPS_1 = 30; 				//Place holder for future msgs 
+		SPARE_GPS_2 = 31; 				//Place holder for future msgs 
+		SPARE_GPS_3 = 32; 				//Place holder for future msgs 
+		SPARE_GPS_4 = 33; 				//Place holder for future msgs 
+		// emergency alarm
+		EA_COVERT_CALL = 34; 			//EA covert mic covert call   
+		EA_ACK = 35; 					//CAD ack of the EA condition 
+		REMOTE_END_EA = 36; 			//CAD termination of EA       
+		EA_STOP_MONITOR = 37; 			//Stop covert EA mon, stay in EA 
+		SPARE_EA_3 = 38; 				//Place holder for future msgs 
+		SPARE_EA_4 = 39; 				//Place holder for future msgs 
+		SPARE_EA_5 = 40; 				//Place holder for future msgs 
+		// equipment
+		EQUIPMENT = 41; 				//Enable/Disable vehicle equipments like camera, callback(lights and horn), etc 
+		SPARE_EQUIPMENT_1 = 42; 		//Place holder for future msgs 
+		SPARE_EQUIPMENT_2 = 43; 		//Place holder for future msgs 
+		// Mechanical alarms
+		ALARM_STATUS = 44; 				//Send status of all alarms, next status poll 
+		ALARM_CONTROL = 45; 			//Disable/Enable all or specified alarms 
+		SPARE_ALARM_1 = 46; 			//Place holder for future msgs 
+		SPARE_ALARM_2 = 47; 			//Place holder for future msgs 
+		SPARE_ALARM_3 = 48; 			//Place holder for future msgs 
+		SPARE_ALARM_4 = 49; 			//Place holder for future msgs 
+		// schedule and route adherence
+		DOWNLOAD_SCHEDULE = 50; 		//Download next set of timepoints 
+		RESET_SCHEDULE = 51; 			//Clear current schedule 
+		RSA_PARAMETERS = 52; 			//Set RSA thresholds for individual vehicles 
+		GROUP_RSA_PARAMETERS = 53; 		//Broadcasted RSA Thresholds 
+		DOWNLOAD_SCHEDULE_DELTA = 54; 	//Download Schedule Delta
+		SPARE_SCHEDULE_4 = 55; 			//Place holder for future msgs 
+		// sleep mode 
+		SPARE_MODE_2 = 56; 				//DO NOT USE - IS EQUAL TO B8 FILLER STRING 
+		VEHICLE_POWER_DOWN = 57; 		//Vehicle to power down immediately if in sleep mode 
+		GO_TO_OUTAGE_MODE = 58; 		//Planned outage voice mode 
+		GO_TO_SLEEP_MODE = 59; 			//Vehicle to sleep mode on ignition off 
+		SPARE_MODE_3 = 60; 				//Place holder for future msgs 
+		SPARE_MODE_4 = 61; 				//Place holder for future msgs 
+		OTA_COMMAND1 = 62; 				//Send various debug commands to the VLU 
+		OTA_COMMAND2 = 63; 				//Send various debug commands to the VLU 
+		ALIVE_NO_ACK = 64; 				//Server Down. DCC sends this to AMDT as Alive msg is not acked by server 
+		LOGOFF_NO_ACK = 65; 			//Server Down. DCC sends this to AMDT as Logoff msg is not acked by server 
+		VOICE_CALL_CANCEL = 66; 		//Cancel voice call - for dual radio AMDTs 
+		// paratransit mode
+		PV_UPDATE_EVENT = 67; 			//Paratransit Update_Event header message 
+		PV_UPDATE_EVENT_DATA = 68; 		//Paratransit Update_Event data message 
+		PV_TRIP_1 = 69; 				//Paratransit trip header message 
+		PV_TRIP_2 = 70; 				//Paratransit trip header message 
+		PV_TRIP_DATA = 71;				//Paratransit trip data message   
+		PV_CANCEL = 72; 				//Paratransit trip cancel message 
+		PV_NOSHOW = 73; 				//Paratransit trip noshow approved message 
+		VAN_QUERY = 74; 				//VAN request for status message
+		VIDEO_DOWNLOAD_REQUEST = 75; 	//Video Data Download Request   
+		REQUEST_PASSENGER_LOAD = 76; 	//Request a passenger count     
+		SCHEDULE_ADJUSTMENT = 77; 		//Schedule Adjustment message 
+		PV_TOTAL_EVENTS = 78; 			//Paratransit Total Events message 
+		OUT_UNUSED_79 = 79;
+		// ATIS messages
+		LDB_HEADER = 80; 				//Large Data Block (LDB) Header         
+		LDB_PACKET = 81; 				//Large Data Block Packet               
+		ATIS_RSA_STATUS_UPDATE = 82; 	//ATIS - RSA Status updates for up to 6 blocks 
+		ATIS_DELETE_SPECIAL_TEXT = 83; 	//ATIS - Delete special text message           
+		ATIS_AUDIO_LEVEL = 84; 			//ATIS - Adjust audio level                    
+		ATIS_SPECIAL_MESSAGE = 85; 		//ATIS - Special Messages - Msgs only needing msg_id and seq_num (optional) 
+		ATIS_CLEARDOWN = 86; 			//ATIS - Cleardown                             
+		ATIS_ROUTE_BLOCK_OVERRIDE = 87; //ATIS - Route Block Override 
+		SET_SYSTEM_PARAMETERS_2 = 88; 	//Set System Parameter 2 
+		DETOUR_GEO_AREA = 89; 			//Detour Geo Area 
+		EXT_STATUS_IND = 90; 			//External Status Indication  
+		MULTI_PURPOSE_ACK = 91; 		//Multi-Purpose ACK 
+		INDIVIDUAL_VLU_CONFIG_MSG = 92; //Individual Multi-Purpose VLU Config message 
+		GROUP_VLU_CONFIG_MSG = 93; 		//Group Multi-Purpose VLU Config message 
+		HEADWAY_ADHERENCE_CHANGE = 94; 	//Msg to notify VLU of change in its headway 
+		VHM_PARAMETER_REQUEST = 95; 	//VHM Parameter Request
+	  }
+
+	enum MessageIDNos {
+		MessageID_0 = 0;
+		MessageID_1 = 1;
+		MessageID_2 = 2;
+		MessageID_3 = 3;
+		MessageID_4 = 4;
+		MessageID_5 = 5;
+		MessageID_6 = 6;
+		MessageID_7 = 7;
+		MessageID_8 = 8;
+		MessageID_9 = 9;
+		MessageID_10 = 10;
+		MessageID_11 = 11;
+		MessageID_12 = 12;
+		MessageID_13 = 13;
+		MessageID_14 = 14;
+		MessageID_15 = 15;
+		MessageID_16 = 16;
+		MessageID_17 = 17;
+		MessageID_18 = 18;
+		MessageID_19 = 19;
+		MessageID_20 = 20;
+		MessageID_21 = 21;
+		MessageID_22 = 22;
+		MessageID_23 = 23;
+		MessageID_24 = 24;
+		MessageID_25 = 25;
+		MessageID_26 = 26;
+		MessageID_27 = 27;
+		MessageID_28 = 28;
+		MessageID_29 = 29;
+		MessageID_30 = 30;
+		MessageID_31 = 31;
+	}
+	
+	OutboundMessageTypeNos TypeID = 1;
+	bool RetryBit = 2;
+	bool ExtendedIDFlag = 3;
+	MessageIDNos Std_MessageID = 4;
+	optional bytes Extnd_MessageID = 5;
+}
+
+message OutMessage {
+	OutMessageHeader MsgHeader = 1;
+	bytes TheMessage = 2;
+}
+
+// The packet of messages
+message OutboundPacket {
+	OutTimeSlotHeader PktHeader = 1;
+	repeated OutMessage PktMessage = 2;
+}

@@ -1,0 +1,457 @@
+{
+    "clientInfo": {
+        "InClientName": "Client-",
+        "OutClientName": "Client-FMS",
+        "hostName": "127.0.0.1",
+        "subOutTopic": "OCTA/FMS/1/OTA2",
+        "pubInTopic": "OCTA/FMS/1/OTA2",
+        "subInTopic": "OCTA/VEHICLE/1234/OTA2",
+        "pubOutTopic": "OCTA/VEHICLE/1234/OTA2",
+        "port": 1883,
+        "max_subtopic_len": 50,
+        "max_pubtopic_len": 50,
+        "max_payload_len": 50000,
+        "pub_qos": 1,
+        "sub_qos": 1,
+        "retain_msg": false,
+        "keep_alive": 200,
+        "clean_session": true,
+        "timeout": 10
+    },
+    "Header": [
+        {
+            "VehicleId": 6605,
+            "TransmissionId": 53,
+            "MessageCount": 3,
+            "cGPSHeading": 90,
+            "cGPSLat": 977321,
+            "cGPSLon": 334983,
+            "Speed": "50",
+            "OffRoute": false,
+            "LateIndicator": false,
+            "SchedDeviation": "5",
+            "GPSHeading": 90,
+            "GPSLat": -117.45833,
+            "GPSLon": 32.569234,
+            "Altitude": 130.5,
+            "Messages": [
+                {
+                    "MessageId": 12,
+                    "IdFlag": false,
+                    "StdId": 0,
+                    "ExtMessageId": "000"
+                },
+                {
+                    "MessageId": 11,
+                    "IdFlag": false,
+                    "StdId": 0,
+                    "ExtMessageId": "000"
+                },
+                {
+                    "MessageId": 12,
+                    "IdFlag": false,
+                    "StdId": 0,
+                    "ExtMessageId": "000"
+                }
+            ]
+        }
+    ],
+
+    "InboundOTAMessage": [
+        {
+            "Name": "CannedDataMsg",
+            "CadId": "1",
+            "IpcId": 0,
+            "Priority": 0,
+            "Response": [ 1 ],
+            "Size": 24,
+            "TxSlot": 0,
+            "ReTxSlot": 0,
+            "TxEnabled": false,
+            "Parameter": [
+                {
+                    "ParamName": "DataMessageID",
+                    "ParamSize": 8,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "TimeStamp",
+                    "ParamSize": 16,
+                    "ParamValue": 0
+                }
+            ]
+        },
+        {
+            "Name": "VehicleLogon",
+            "CadId": "10",
+            "IpcId": 0,
+            "Priority": 0,
+            "Response": [ 1, 18 ],
+            "Size": 48,
+            "TxSlot": 0,
+            "ReTxSlot": 0,
+            "TxEnabled": false,
+            "Parameter": [
+                {
+                    "ParamName": "OperatorID",
+                    "ParamSize": 28,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "BlockRun",
+                    "ParamSize": 20,
+                    "ParamValue": 0
+                }
+            ]
+        },
+        {
+            "Name": "VehicleLogoff",
+            "CadId": "11",
+            "IpcId": 0,
+            "Priority": 0,
+            "Response": [ 1 ],
+            "Size": 48,
+            "TxSlot": 0,
+            "ReTxSlot": 0,
+            "TxEnabled": false,
+            "Parameter": [
+                {
+                    "ParamName": "SequenceID",
+                    "ParamSize": 12,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "Spare",
+                    "ParamSize": 4,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "Null Revenue Mileage",
+                    "ParamSize": 1,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "Null Non-Revenue Mileage",
+                    "ParamSize": 1,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "Revenue Mileage Units",
+                    "ParamSize": 11,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "Non-Revenue Mileage Units",
+                    "ParamSize": 11,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "Deadhead Mileage Units",
+                    "ParamSize": 8,
+                    "ParamValue": 0
+                }
+            ]
+        },
+        {
+            "Name": "VehicleAlive",
+            "CadId": "12",
+            "IpcId": 0,
+            "Priority": 0,
+            "Response": [ 1, 18 ],
+            "Size": 48,
+            "TxSlot": 0,
+            "ReTxSlot": 0,
+            "TxEnabled": false,
+            "Parameter": [
+                {
+                    "ParamName": "FallbackVoiceChannel",
+                    "ParamSize": 8,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "PrimaryDataChannel",
+                    "ParamSize": 4,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "SecondaryDataChannel",
+                    "ParamSize": 4,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "VLUSoftwareMajor",
+                    "ParamSize": 8,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "VLUSoftwareMinor",
+                    "ParamSize": 8,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "VLUSoftwarePatch",
+                    "ParamSize": 8,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "VLUSoftwareIni",
+                    "ParamSize": 8,
+                    "ParamValue": 0
+                }
+            ]
+        }
+    ],
+
+    "OutboundOTAMessage": [
+        {
+            "Name": "SimpleAcknowledge",
+            "CadId": "1",
+            "IpcId": 0,
+            "Priority": 0,
+            "Response": [],
+            "Size": 8,
+            "TxSlot": 0,
+            "ReTxSlot": 0,
+            "TxEnabled": false,
+            "Parameter": [
+                {
+                    "ParamName": "TransmissionID",
+                    "ParamSize": 7,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "RetryIndication",
+                    "ParamSize": 1,
+                    "ParamValue": 0
+                }
+            ]
+        },
+        {
+            "Name": "RemoteLogon",
+            "CadId": "14",
+            "IpcId": 0,
+            "Priority": 0,
+            "Response": [ 7, 10 ],
+            "Size": 64,
+            "TxSlot": 0,
+            "ReTxSlot": 0,
+            "TxEnabled": false,
+            "Parameter": [
+                {
+                    "ParamName": "OperatorID",
+                    "ParamSize": 28,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "Run/Block",
+                    "ParamSize": 20,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "VehicleRoute",
+                    "ParamSize": 16,
+                    "ParamValue": 0
+                }
+            ]
+        },
+        {
+            "Name": "VehicleLogonAcknowledge",
+            "CadId": "15",
+            "IpcId": 0,
+            "Priority": 0,
+            "Response": [ 7 ],
+            "Size": 152,
+            "TxSlot": 0,
+            "ReTxSlot": 0,
+            "TxEnabled": false,
+            "Parameter": [
+                {
+                    "ParamName": "LogonAcknowledgment",
+                    "ParamSize": 4,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "OverrideRSADisable",
+                    "ParamSize": 1,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "BookingID",
+                    "ParamSize": 3,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "FreeRunning",
+                    "ParamSize": 1,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "RouteAdherenceDisabled",
+                    "ParamSize": 1,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "ScheduleAdherenceDisabled",
+                    "ParamSize": 1,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "VehicleOffRteDelayTime",
+                    "ParamSize": 5,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "VehicleEarlyLimit",
+                    "ParamSize": 8,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "VehicleLateLimit",
+                    "ParamSize": 8,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "VehicleOffRte",
+                    "ParamSize": 8,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "ServiceType",
+                    "ParamSize": 4,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "Run",
+                    "ParamSize": 20,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "VehicleRoute",
+                    "ParamSize": 16,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "Division",
+                    "ParamSize": 12,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "BeginningSequenceId",
+                    "ParamSize": 12,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "RSAParameterType",
+                    "ParamSize": 3,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "TransitDay",
+                    "ParamSize": 5,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "BlockNumber",
+                    "ParamSize": 20,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "SpareBits",
+                    "ParamSize": 3,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "HeadwayDisable",
+                    "ParamSize": 1,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "VehicleGapLimit",
+                    "ParamSize": 8,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "VehicleBunchLimit",
+                    "ParamSize": 8,
+                    "ParamValue": 0
+                }
+            ]
+        },
+        {
+            "Name": "RemoteLogoff",
+            "CadId": "16",
+            "IpcId": 0,
+            "Priority": 0,
+            "Response": [ 7, 11 ],
+            "Size": 8,
+            "TxSlot": 0,
+            "ReTxSlot": 0,
+            "TxEnabled": false,
+            "Parameter": [
+
+            ]
+        },
+        {
+            "Name": "VehicleLogoffAcknowledge",
+            "CadId": "17",
+            "IpcId": 0,
+            "Priority": 0,
+            "Response": [ 7 ],
+            "Size": 8,
+            "TxSlot": 0,
+            "ReTxSlot": 0,
+            "TxEnabled": false,
+            "Parameter": [
+
+            ]
+        },
+        {
+            "Name": "VehicleAliveAcknowledge",
+            "CadId": "18",
+            "IpcId": 0,
+            "Priority": 0,
+            "Response": [ 7 ],
+            "Size": 72,
+            "TxSlot": 0,
+            "ReTxSlot": 0,
+            "TxEnabled": false,
+            "Parameter": [
+                {
+                    "ParamName": "SleepMode",
+                    "ParamSize": 1,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "DelayOffInterval",
+                    "ParamSize": 7,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "DefaultEAData",
+                    "ParamSize": 8,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "DefaultEAVoice",
+                    "ParamSize": 8,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "TimeZone",
+                    "ParamSize": 8,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "CurrentTime",
+                    "ParamSize": 32,
+                    "ParamValue": 0
+                },
+                {
+                    "ParamName": "HomeDivision",
+                    "ParamSize": 8,
+                    "ParamValue": 0
+                }
+            ]
+        }
+    ]
+}

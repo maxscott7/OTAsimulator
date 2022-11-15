@@ -1,0 +1,10 @@
+A:
+Send 10
+Delay 1
+Send 11
+Delay 1
+Send 12 PrimaryDataChannel=3 FallbackVoiceChannel=4
+Delay 1
+End A
+Loop A 5
+quit

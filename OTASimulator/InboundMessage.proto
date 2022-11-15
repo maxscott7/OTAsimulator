@@ -1,0 +1,270 @@
+
+// [START declaration]
+syntax = "proto3";
+package OTAMessages;
+
+// The time slot header
+message InTimeSlotHeader {
+	enum MessageCountNos {
+		MsgCOUNT0 = 0;
+		MsgCOUNT1 = 1;
+		MsgCOUNT2 = 2;
+		MsgCOUNT3 = 3;
+	}
+	
+	enum TransmissionIDNo {
+		TransID_0 = 0;
+		TransID_1 = 1;
+		TransID_2 = 2;
+		TransID_3 = 3;
+		TransID_4 = 4;
+		TransID_5 = 5;
+		TransID_6 = 6;
+		TransID_7 = 7;
+		TransID_8 = 8;
+		TransID_9 = 9;
+		TransID_10 = 10;
+		TransID_11 = 11;
+		TransID_12 = 12;
+		TransID_13 = 13;
+		TransID_14 = 14;
+		TransID_15 = 15;
+		TransID_16 = 16;
+		TransID_17 = 17;
+		TransID_18 = 18;
+		TransID_19 = 19;
+		TransID_20 = 20;
+		TransID_21 = 21;
+		TransID_22 = 22;
+		TransID_23 = 23;
+		TransID_24 = 24;
+		TransID_25 = 25;
+		TransID_26 = 26;
+		TransID_27 = 27;
+		TransID_28 = 28;
+		TransID_29 = 29;
+		TransID_30 = 30;
+		TransID_31 = 31;
+		TransID_32 = 32;
+		TransID_33 = 33;
+		TransID_34 = 34;
+		TransID_35 = 35;
+		TransID_36 = 36;
+		TransID_37 = 37;
+		TransID_38 = 38;
+		TransID_39 = 39;
+		TransID_40 = 40;
+		TransID_41 = 41;
+		TransID_42 = 42;
+		TransID_43 = 43;
+		TransID_44 = 44;
+		TransID_45 = 45;
+		TransID_46 = 46;
+		TransID_47 = 47;
+		TransID_48 = 48;
+		TransID_49 = 49;
+		TransID_50 = 50;
+		TransID_51 = 51;
+		TransID_52 = 52;
+		TransID_53 = 53;
+		TransID_54 = 54;
+		TransID_55 = 55;
+		TransID_56 = 56;
+		TransID_57 = 57;
+		TransID_58 = 58;
+		TransID_59 = 59;
+		TransID_60 = 60;
+		TransID_61 = 61;
+		TransID_62 = 62;
+		TransID_63 = 63;
+	}
+	
+	int32 VehicleID = 1;
+	TransmissionIDNo TransmissionID = 2;
+	MessageCountNos MessageCount = 3;
+	bool GPS_NULL_indicator = 4;
+	int32 CompressGPSHeading = 5;
+	int32 CompressGPSLat = 6;
+	int32 CompressGPSLon = 7;
+	bytes Speed = 8;
+	bool OffRoute = 9;
+	bool LateIndicator = 10;
+	bytes SchedDeviation = 11;
+	int32 GPSHeading = 12;
+	double GPSLat = 13;
+	double GPSLon = 14;
+	float Altitude = 15;
+}
+
+// The individual message header
+
+message InMessageHeader {
+	enum InboundMessageTypeNos {
+      IN_UNUSED = 0;  				// Not used
+      // call messages 
+      SEND_DATA_MSG = 1;  			// Canned data msg from driver 
+      RTT = 2;  						//Request to talk from driver 
+      PRTT = 3;  					//Priority request to talk from driver 
+      GONE_TO_VOICE = 4;  			//Gone to voice - response to call 
+      RETURNED_TO_DATA = 5;  		//Returned to data after call 
+      CALL_NACK = 6;  				//Call Nack - Cannot do requested call 
+      SV_DATA_MESSAGE_ACK = 7;  	//Bitmap for single veh data msg ack 
+      MV_DATA_MESSAGE_ACK = 8;  	//Bitmap for multi veh data msg ack  
+      CCT = 9;  					//Channel connection test msg (CCT)
+      // vehicle/driver status 
+      VEHICLE_LOGON = 10; 			//driver initiated logon 
+      VEHICLE_LOGOFF = 11; 			//driver initiated logoff 
+      VEHICLE_ALIVE = 12; 			//vehicle ignition on 
+      AMDT_STATUS = 13; 			//Health of the GPS in the AMDT 
+      RELIEF_LOGON = 14; 			//driver relief logon 
+      VID_UPDATE = 15; 				//Change Vehicle Id 
+      SV_OPERATOR_RESPONSE = 16; 	//Operator response, single vehicle  
+      MV_OPERATOR_RESPONSE = 17; 	//Operator response, multi vehicle 
+      INVALID_MOVEMENT = 18; 		//Invalid Vehicle movement  
+      PERSONNEL_STATUS = 19; 		//current personnel status 
+      // GPS 
+      CURRENT_LOCATION = 20; 		//current vehicle location 
+      EA_POSITION_UPDATE = 21; 		//EA Position update  
+      PRECISE_LOCATION = 22; 		//Precise vehicle location for yard 
+      YARD_MOVEMENT = 23; 			//Vehicle movement message for yard 
+      PV_POSITION_UPDATE = 24; 		//Permanent Voice Location Update 
+      // emergency alarm 
+      EMERGENCY_ALARM = 25; 		//emergency alarm set 
+      END_EMERGENCY_ALARM = 26; 	//emergency alarm cleared 
+      CRTT = 27; 					//Cancel request to talk 
+      RTTP = 28; 					//Request to talk to Police 
+      SRTT = 29; 					//Selective request to talk 
+      END_PV = 30; 					//End PV from Vehicle 
+      // camera 
+      CAMERA_ACK = 31; 				//camera cmd acknowledge 
+      VEHICLE_INSPECTION_REPORT = 32; //Vehicle Inspection Report  
+      VEHICLE_ALIVE2 = 33; 			//vehicle alive 2 msg 
+      // Vehicle alarms 
+      VEHICLE_ALARM = 34; 			//alarm detected 
+      RETURN_ALARM_STATUS = 35; 	//status of all alarms 
+      SPARE_INALARM_1 = 36; 		//Place holder for future msgs 
+      SPARE_INALARM_2 = 37; 		//Place holder for future msgs 
+      SPARE_INALARM_3 = 38; 		//Place holder for future msgs 
+      SPARE_INALARM_4 = 39; 		//Place holder for future msgs 
+      // schedule and route adherence 
+      OFF_ROUTE_EXCEPTION = 40; 	//vehicle off route 
+      SCHEDULE_STATUS_POLL = 41; 	//schedule status 
+      TIMEPOINT_ENCOUNTER = 42; 	//vehicle arrived at timepoint 
+      SCHEDULE_REQUEST = 43; 		//request for more schedule timepoints 
+      RECEIVED_SCHEDULE = 44; 		//schedule received - response in poll 
+      SPARE_INSCHEDULE_0 = 45; 		//schedule received - immediate response 
+      INVALID_SCHEDULE_DATA = 46; 	//invalid schedule data received 
+      TRANSFER_REQUEST = 47; 		//Transfer request  Scr 3086   
+      RELIEF_LOGON_1 = 48; 			//relief logon 1 
+      RELIEF_LOGON_2 = 49; 			//relief logon 2 
+      SPARE_INSCHEDULE_4 = 50; 		//Place holder for future msgs 
+      SPARE_INSCHEDULE_5 = 51; 		//Place holder for future msgs 
+      SPARE_INSCHEDULE_6 = 52; 		//Place holder for future msgs 
+      // VLU modes 
+      DELAY_OFF_MODE_MSG = 53; 		//vehicle enter/exit Delay Off Mode 
+      GONE_TO_SLEEP_MODE = 54; 		//vehicle gone to sleep mode 
+      GONE_TO_POWER_DOWN = 55; 		//vehicle gone to power down 
+      GONE_TO_OUTAGE_MODE = 56; 	//vehicle gone to planned outage mode 
+      GOING_OFFLINE = 57; 			//light rail head AMDT gone to tail/intermediate 
+      SPARE_INMODE_3 = 58; 			//Place holder for future msgs 
+      SPARE_INMODE_4 = 59; 			//Place holder for future msgs 
+      // transmission layer
+      POLL_RESPONSE = 60; 			//bit in dcc in header 
+      SIMPLE_ACKNOWLEDGE = 61; 		//bit in dcc in header 
+      IV_OPERATOR_ACKNOWLEDGE = 62;	//bit in dcc in header 
+      GV_OPERATOR_ACKNOWLEDGE = 63; //bit in dcc in header 
+      DATA_RECVD_ACKNOWLEDGE = 64; 	//bit in dcc in header 
+      IN_FALLBACK = 65; 			//In Fallback          
+      SPARE_TRANS_2 = 66; 			//Spare                
+      SPARE_TRANS_3 = 67; 			//Spare                
+      SPARE_TRANS_4 = 68; 			//Spare                
+      VP_UPDATE_EVENT_ACK = 69;		//PT Ack of PV_Update_Event and its PV_Update_Event_Data 
+      // Paratransit messages
+      VP_ARRIVE = 70; 				//PT vehicle arrived at stop 
+      VP_PERFORM_1 = 71; 			//PT pickup/dropoff -  part 1 
+      VP_PERFORM_2 = 72; 			//PT pickup/dropoff -  part 2 
+      VP_REQ_NOSHOW = 73; 			//PT request to go on - passenger a noshow 
+      VP_CANCEL = 74; 				//PT passenger canceled at door 
+      VP_CANNED_MSG = 75; 			//PT canned message 
+      VP_TRIP_MSG_ACK = 76; 		//PT Ack of PVTrip and corresponding PVTripData   
+      VP_PERFORM_3 = 77; 			//PT pickup/dropoff -  part 3 
+      VAN_ALARM = 78; 				//VAN alarm - J1708 
+      VAN_RESPONSE = 79; 			//VAN response - J1708 
+      VIDEO_DOWNLOAD_RESPONSE = 80;	//Video Download Response 
+      VEHICLE_EQUIPMENT_STATUS = 81; //Vehicle Equipment Status 
+      PASSENGER_LOAD = 82; 			//Passenger Load 
+      IMPROPER_VEHICLE_ACTIVITY = 83; //Improper Vehicle Activity  
+      VP_DEPARTURE = 84; 			//Paratransit Departure 
+      // ATIS messages
+      LDB_ACK = 85; 				//Ack of Large Data Block (LDB) Packet 
+      ATIS_SIGN_LOGON = 86; 		//ATIS - Sign Logon 
+	  
+      VP_PERFORM_4 = 87; 			//PT pickup/dropoff - part 4 
+      VLU_STATUS_2 = 88; 			//VLU status 2 message     
+      TRAIN_CONFIGURATION = 89; 	//Train Configuration 
+      UPDATE_USER_PREFERENCE = 90; 	//Update User Preference 
+      SUPPORTED_FEATURES = 91; 		//Supported Features  
+      VHM_PARAMETER_RESPONSE_1 = 92; //VHM Parameter Response 1, 
+      VHM_PARAMETER_RESPONSE_N = 93; //VHM Parameter Response N, 
+      VHM_ALARM_1 = 94; 			//VHM Alarm 1, 
+      VHM_ALARM_2 = 95; 			//VHM Alarm 2, 
+  }
+
+
+	enum ExtendedIDFlagVals {
+		SHORT_ID_SIZE = 0;
+		EXTENDED_ID_SIZE = 1;
+		}
+	
+	enum MessageIDNos {
+		MessageID_0 = 0;
+		MessageID_1 = 1;
+		MessageID_2 = 2;
+		MessageID_3 = 3;
+		MessageID_4 = 4;
+		MessageID_5 = 5;
+		MessageID_6 = 6;
+		MessageID_7 = 7;
+		MessageID_8 = 8;
+		MessageID_9 = 9;
+		MessageID_10 = 10;
+		MessageID_11 = 11;
+		MessageID_12 = 12;
+		MessageID_13 = 13;
+		MessageID_14 = 14;
+		MessageID_15 = 15;
+		MessageID_16 = 16;
+		MessageID_17 = 17;
+		MessageID_18 = 18;
+		MessageID_19 = 19;
+		MessageID_20 = 20;
+		MessageID_21 = 21;
+		MessageID_22 = 22;
+		MessageID_23 = 23;
+		MessageID_24 = 24;
+		MessageID_25 = 25;
+		MessageID_26 = 26;
+		MessageID_27 = 27;
+		MessageID_28 = 28;
+		MessageID_29 = 29;
+		MessageID_30 = 30;
+		MessageID_31 = 31;
+	}
+	
+	// TypeID can contain the outbound message ID
+	InboundMessageTypeNos TypeID = 1;
+	bool ExtendedIDFlag = 3;
+	MessageIDNos Std_MessageID = 4;
+	optional bytes Extended_MessageID = 5;
+}
+
+message InMessage {
+	InMessageHeader MsgHeader = 1;
+	bytes TheMessage = 2;
+}
+
+// The packet of messages
+message InboundPacket {
+	InTimeSlotHeader PktHeader = 1;
+	repeated InMessage PktMessage = 2;
+}
